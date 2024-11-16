@@ -1,0 +1,272 @@
+C51 COMPILER V9.54   CARMOVEMENT                                                           11/09/2024 16:11:37 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE CARMOVEMENT
+OBJECT MODULE PLACED IN .\Objects\carMovement.obj
+COMPILER INVOKED BY: D:\mcu\keil5\C51\BIN\C51.EXE carMovement.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\List
+                    -ings\carMovement.lst) OBJECT(.\Objects\carMovement.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include <intrins.h>
+   3          
+   4          sbit IN1F = P1^3;
+   5          sbit IN2F = P1^2;
+   6          sbit IN3F = P1^1;
+   7          sbit IN4F = P1^0;
+   8          
+   9          sbit IN1B = P0^0;
+  10          sbit IN2B = P0^1;
+  11          sbit IN3B = P0^2;
+  12          sbit IN4B = P0^3;
+  13          
+  14          #define PWM_PERIOD 64
+  15          unsigned char dutyCycle1 = 32; //Left
+  16          unsigned char dutyCycle2 = 32; //Right
+  17          unsigned char States = 0;
+  18          unsigned char Fliping = 0; //1 means enable, 0 means disable
+  19          
+  20          void Timer0_Init(void)
+  21          {
+  22   1          TMOD |= 0x01;
+  23   1          TH0 = 0xFF;
+  24   1          TL0 = 0x00; 
+  25   1          ET0 = 1;
+  26   1          EA = 1;
+  27   1          TR0 = 1;
+  28   1      }
+  29          
+  30          void Timer1_Init(void)
+  31          {
+  32   1          TMOD |= 0x10;
+  33   1          TH1 = 0xFF;
+  34   1          TL1 = 0x00; 
+  35   1          ET1 = 1;
+  36   1          TR1 = 1;
+  37   1      }
+  38          
+  39          void Timer0_ISR(void) interrupt 1
+  40          {
+  41   1          static unsigned char pwmCounter1 = 0;
+  42   1          TH0 = 0xFF;
+  43   1          TL0 = 0x00;
+  44   1      
+  45   1          pwmCounter1++;
+  46   1          if (pwmCounter1 >= PWM_PERIOD)
+  47   1          {
+  48   2              pwmCounter1 = 0;
+  49   2          }
+  50   1      
+  51   1          if (pwmCounter1 < dutyCycle1 && (States != 3 && States != 4 && States != 5 && States != 6))
+  52   1          {
+  53   2              if (Fliping == 1 && States == 2)
+  54   2              {
+C51 COMPILER V9.54   CARMOVEMENT                                                           11/09/2024 16:11:37 PAGE 2   
+
+  55   3                  IN1F = 1;
+  56   3                  IN2F = 0;
+  57   3                  IN1B = 0;
+  58   3                  IN2B = 1;
+  59   3              }
+  60   2              else
+  61   2              {
+  62   3                  IN1F = 0;
+  63   3                  IN2F = 1;
+  64   3                  IN1B = 1;
+  65   3                  IN2B = 0;
+  66   3              }
+  67   2          }
+  68   1          else if (pwmCounter1 >= dutyCycle1 && (States != 3 && States != 4 && States != 5 && States != 6))
+  69   1          {
+  70   2              IN1F = 0;
+  71   2              IN2F = 0;
+  72   2              IN1B = 0;
+  73   2              IN2B = 0;
+  74   2          }
+  75   1      }
+  76          
+  77          void Timer1_ISR(void) interrupt 3
+  78          {
+  79   1          static unsigned char pwmCounter2 = 0;
+  80   1          TH1 = 0xFF;
+  81   1          TL1 = 0x00;
+  82   1      
+  83   1          pwmCounter2++;
+  84   1      
+  85   1          if (pwmCounter2 >= PWM_PERIOD)
+  86   1          {
+  87   2              pwmCounter2 = 0;
+  88   2          }
+  89   1      
+  90   1          if (pwmCounter2 < dutyCycle2 && (States != 3 && States != 4 && States != 5 && States != 6))
+  91   1          {
+  92   2              if (Fliping == 1 && States == 1)
+  93   2              {
+  94   3                  IN3F = 0;
+  95   3                  IN4F = 1;
+  96   3                  IN3B = 0;
+  97   3                  IN4B = 1;
+  98   3              }
+  99   2              else
+ 100   2              {
+ 101   3                  IN3F = 1;
+ 102   3                  IN4F = 0;
+ 103   3                  IN3B = 1;
+ 104   3                  IN4B = 0;
+ 105   3              }
+ 106   2          }
+ 107   1          else if (pwmCounter2 >= dutyCycle2 && (States != 3 && States != 4 && States != 5 && States != 6))
+ 108   1          {
+ 109   2              IN3F = 0;
+ 110   2              IN4F = 0;
+ 111   2              IN3B = 0;
+ 112   2              IN4B = 0;
+ 113   2          }
+ 114   1      }
+ 115          
+ 116          void carMoveForward(short int level)
+C51 COMPILER V9.54   CARMOVEMENT                                                           11/09/2024 16:11:37 PAGE 3   
+
+ 117          {
+ 118   1          States = 0;
+ 119   1          if (level == 1)
+ 120   1          {
+ 121   2              dutyCycle1 = 16;
+ 122   2              dutyCycle2 = 16;
+ 123   2          }
+ 124   1          else if (level == 2)
+ 125   1          {
+ 126   2              dutyCycle1 = 32;
+ 127   2              dutyCycle2 = 32;
+ 128   2          }
+ 129   1          else if (level == 3)
+ 130   1          {
+ 131   2              dutyCycle1 = 48;
+ 132   2              dutyCycle2 = 48;
+ 133   2          }
+ 134   1          else if (level == 4)
+ 135   1          {
+ 136   2              dutyCycle1 = 63;
+ 137   2              dutyCycle2 = 63;
+ 138   2          }
+ 139   1      }
+ 140          
+ 141          void carTurnRight(short int level)
+ 142          {
+ 143   1              States = 1;
+ 144   1          if (level == 1)
+ 145   1          {
+ 146   2              Fliping = 0;
+ 147   2              dutyCycle1 = 48;
+ 148   2              dutyCycle2 = 32;
+ 149   2          }
+ 150   1          else if (level == 2)
+ 151   1          {
+ 152   2              Fliping = 0;
+ 153   2              dutyCycle1 = 48;
+ 154   2              dutyCycle2 = 16;
+ 155   2          }
+ 156   1          else if (level == 3)
+ 157   1          {
+ 158   2              Fliping = 1;
+ 159   2              dutyCycle1 = 32;
+ 160   2              dutyCycle2 = 16;
+ 161   2          }
+ 162   1      }
+ 163          
+ 164          void carTurnLeft(short int level)
+ 165          {
+ 166   1          States = 2;
+ 167   1          if (level == 1)
+ 168   1          {
+ 169   2              Fliping = 0;
+ 170   2              dutyCycle1 = 32;
+ 171   2              dutyCycle2 = 48;
+ 172   2          }
+ 173   1          else if (level == 2)
+ 174   1          {
+ 175   2              Fliping = 0;
+ 176   2              dutyCycle1 = 16;
+ 177   2              dutyCycle2 = 48;
+ 178   2          }
+C51 COMPILER V9.54   CARMOVEMENT                                                           11/09/2024 16:11:37 PAGE 4   
+
+ 179   1          else if (level == 3)
+ 180   1          {
+ 181   2              Fliping = 1;
+ 182   2              dutyCycle1 = 16;
+ 183   2              dutyCycle2 = 63;
+ 184   2          }
+ 185   1      }
+ 186          
+ 187          void carStop()
+ 188          {
+ 189   1          States = 3;
+ 190   1          IN1F = 0;
+ 191   1          IN2F = 0;
+ 192   1          IN3F = 0;
+ 193   1          IN4F = 0;
+ 194   1          IN1B = 0;
+ 195   1          IN2B = 0;
+ 196   1          IN3B = 0;
+ 197   1          IN4B = 0;
+ 198   1      }
+ 199          
+ 200          void carMoveBackward()
+ 201          {
+ 202   1          States = 4;
+ 203   1              IN1F = 1;
+ 204   1              IN2F = 0;
+ 205   1              IN3F = 0;
+ 206   1              IN4F = 1;
+ 207   1      
+ 208   1          IN1B = 0;
+ 209   1          IN2B = 1;
+ 210   1          IN3B = 0;
+ 211   1          IN4B = 1;
+ 212   1      }
+ 213          
+ 214          void carSharpRight()
+ 215          {
+ 216   1          States = 5;
+ 217   1              IN1F = 0;
+ 218   1              IN2F = 1;
+ 219   1              IN3F = 0;
+ 220   1              IN4F = 1;
+ 221   1      
+ 222   1          IN1B = 1;
+ 223   1          IN2B = 0;
+ 224   1          IN3B = 0;
+ 225   1          IN4B = 1;
+ 226   1      }
+ 227          
+ 228          void carSharpLeft()
+ 229          {
+ 230   1          States = 6;
+ 231   1              IN1F = 1;
+ 232   1              IN2F = 0;
+ 233   1              IN3F = 1;
+ 234   1              IN4F = 0;
+ 235   1      
+ 236   1          IN1B = 0;
+ 237   1          IN2B = 1;
+ 238   1          IN3B = 1;
+ 239   1          IN4B = 0;
+ 240   1      }
+C51 COMPILER V9.54   CARMOVEMENT                                                           11/09/2024 16:11:37 PAGE 5   
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    513    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      6    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

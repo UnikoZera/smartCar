@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "*.c": "c",
+        "regx52.h": "c",
+        "carmovement.h": "c",
+        "intrins.h": "c",
+        "INTRINS.H": "cpp",
+        "cartracking.h": "c",
+        "REGX52.H": "cpp"
+    }
+}
