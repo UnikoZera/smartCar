@@ -2,14 +2,14 @@
 #include <intrins.h>
 #include "carMovement.h"
 
-sbit Left_0 =   P1^4;
-sbit Left_1 =   P1^5;
-sbit Left_2 =   P1^6;
-sbit Middle_0 = P1^7; 
-sbit Middle_1 = P0^4; 
-sbit Right_0 =  P0^5;
-sbit Right_1 =  P0^6;
-sbit Right_2 =  P0^7;
+sbit Left_0 =   P3^7;
+sbit Left_1 =   P3^6;
+sbit Left_2 =   P3^5;
+sbit Middle_0 = P3^4; 
+sbit Middle_1 = P1^3; 
+sbit Right_0 =  P1^2;
+sbit Right_1 =  P1^1;
+sbit Right_2 =  P1^0;
 
 unsigned char valueState = 0;
 unsigned char previousStates = 0;

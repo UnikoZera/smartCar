@@ -1,13 +1,13 @@
 #include <REGX52.H>
 #include <intrins.h>
 
-sbit IN1F = P1^3;
-sbit IN2F = P1^2;
-sbit IN3F = P1^1;
-sbit IN4F = P1^0;
+sbit IN1F = P2^0;
+sbit IN2F = P2^1;
+sbit IN3F = P0^1;
+sbit IN4F = P0^0;
 
-sbit IN1B = P0^0;
-sbit IN2B = P0^1;
+sbit IN1B = P2^2;
+sbit IN2B = P2^3;
 sbit IN3B = P0^2;
 sbit IN4B = P0^3;
 

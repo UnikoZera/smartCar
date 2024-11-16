@@ -3,8 +3,6 @@
 #include "carMovement.h"
 #include "carTracking.h"
 
-sbit det = P3^7;
-
 void Delay1000ms(void)	//@11.0592MHz
 {
 	unsigned char data i, j, k;
@@ -28,16 +26,6 @@ void main()
 	Timer1_Init();
 	while(1)
 	{
-		// Tracking();
-		if (det == 0)
-		{
-			Fliping = 0;
-			carStop();
-		}
-		else
-		{
-			Fliping = 1;
-			carTurnRight(3);
-		}
+		carStop();
 	}		
 }
