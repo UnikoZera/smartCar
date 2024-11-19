@@ -14,6 +14,19 @@ sbit Right_2 =  P1^0;
 unsigned char valueState = 0;
 unsigned char previousStates = 0;
 
+void Delay100ms(void)
+{
+	unsigned char data i, j;
+
+	i = 180;
+	j = 73;
+	do
+	{
+		while (--j);
+	} while (--i);
+}
+
+
 //黑线是1，白线是0
 void ChangeState() //调整小车冲出赛道的状态
 {

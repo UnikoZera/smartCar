@@ -3,13 +3,13 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: ¦ÌVision V5.14.1
-Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: 1 UnikoZera, 1, LIC=65SKC-74TXP-RK1BI-T20GH-DSA4G-EBY7C
+IDE-Version: ¦ÌVision V5.24.2.0
+Copyright (C) 2017 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Uniko Zera, 1, LIC=LSXG8-39NSE-0BMEL-0MN3X-F68J0-P7QNK
  
 Tool Versions:
 Toolchain:       PK51 Prof. Developers Kit  Version: 9.54
-Toolchain Path:  D:\mcu\keil5\C51\BIN
+Toolchain Path:  D:\mcu\Keil5\C51\BIN
 C Compiler:      C51.exe V9.54
 Assembler:       A51.exe V8.02c
 Linker/Locator:  BL51.exe V6.22
@@ -19,19 +19,24 @@ CPU DLL:         S8051.DLL V3.100.0.0
 Dialog DLL:      DP51.DLL V2.62.0.1 
 <h2>Project:</h2>
 D:\mcu\projects\smartCar\main.uvproj
-Project File Date:  11/02/2024
+Project File Date:  11/19/2024
 
 <h2>Output:</h2>
 Build target 'Target 1'
 compiling main.c...
+compiling carMovement.c...
+compiling carTracking.c...
 linking...
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?DELAY1000MS?MAIN
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY100MS?CARTRACKING
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?TRACKING?CARTRACKING
-Program Size: data=17.0 xdata=0 code=988
+Program Size: data=17.0 xdata=0 code=1006
 creating hex file from ".\Objects\main"...
-".\Objects\main" - 0 Error(s), 2 Warning(s).
+".\Objects\main" - 0 Error(s), 3 Warning(s).
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>
