@@ -14,18 +14,14 @@ sbit Right_2 =  P1^0;
 unsigned char valueState = 0;
 unsigned char previousStates = 0;
 
-void Delay100ms(void)
+void Delay100us(void)	//@11.0592MHz
 {
-	unsigned char data i, j;
+	unsigned char data i;
 
-	i = 180;
-	j = 73;
-	do
-	{
-		while (--j);
-	} while (--i);
+	_nop_();
+	i = 43;
+	while (--i);
 }
-
 
 //黑线是1，白线是0
 void ChangeState() //调整小车冲出赛道的状态
@@ -55,46 +51,40 @@ void Tracking()
         }
         else if (Left_1 == 1)
         {
-            Fliping = 1;
             carTurnLeft(3);
         }
         else if (Left_2 == 1)
         {
-            Fliping = 0;
             carTurnLeft(2);
         }
         else if (Middle_0 == 1)
         {
-            Fliping = 0;
             carTurnLeft(1);
         }
     }
     //右边检查到黑线，但是左边是nil
     else if ( (Left_0 == 0 && Left_1 == 0 && Left_2 == 0 && Middle_0 == 0) && (Right_0 == 1 || Right_1 == 1 || Right_2 == 1 || Middle_1 == 1))
     {
-        if (Right_0 == 1)
+        if (Right_2 == 1)
         {
             carSharpRight();
         }
         else if (Right_1 == 1)
         {
-            Fliping = 0;
-            carTurnRight(2);
-        }
-        else if (Right_2 == 1)
-        {
-            Fliping = 1;
             carTurnRight(3);
+        }
+        else if (Right_0 = 1)
+        {
+            carTurnRight(2);
         }
         else if (Middle_1 == 1)
         {
-            Fliping = 0;
             carTurnRight(1);
         }
     }
     else if ((Left_0 == 1 && Left_1 == 1 && Left_2 == 1 && Middle_0 == 1 && Middle_1 == 1 && Right_0 == 1 && Right_1 == 1 && Right_2 == 1) || (Middle_0 == 1 && Middle_1 == 1) || (Middle_0 == 1 && Middle_1 == 1 && Left_2 == 1 && Right_0 == 1) || (Middle_0 == 1 && Middle_1 == 1 && Left_2 == 1 && Left_1 == 1 && Right_0 == 1 && Right_2 == 1))
     { 
-        carMoveForward(1); //暴力直走
+        carMoveForward(3); //暴力直走
     }
     else if ((Left_0 == 0 && Left_1 == 0 && Left_2 == 0 && Middle_0 == 0 && Middle_1 == 0 && Right_0 == 0 && Right_1 == 0 && Right_2 == 0))
     {
@@ -108,6 +98,7 @@ void Tracking()
 
     if (valueState != States)   /*记忆上一次的状态*/
     {
+        Delay100us();
         previousStates = valueState;
         valueState = States;
     }

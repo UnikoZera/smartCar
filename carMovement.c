@@ -81,7 +81,6 @@ void Timer1_ISR(void) interrupt 3
     TL1 = 0x00;
 
     pwmCounter2++;
-
     if (pwmCounter2 >= PWM_PERIOD)
     {
         pwmCounter2 = 0;
@@ -145,19 +144,19 @@ void carTurnRight(short int level)
     {
         Fliping = 0;
         dutyCycle1 = 48;
-        dutyCycle2 = 32;
+        dutyCycle2 = 16;
     }
     else if (level == 2)
     {
-        Fliping = 0;
+        Fliping = 1;
         dutyCycle1 = 48;
         dutyCycle2 = 16;
     }
     else if (level == 3)
     {
         Fliping = 1;
-        dutyCycle1 = 32;
-        dutyCycle2 = 16;
+        dutyCycle1 = 48;
+        dutyCycle2 = 32;
     }
 }
 
@@ -167,20 +166,20 @@ void carTurnLeft(short int level)
     if (level == 1)
     {
         Fliping = 0;
-        dutyCycle1 = 32;
+        dutyCycle1 = 16;
         dutyCycle2 = 48;
     }
     else if (level == 2)
     {
-        Fliping = 0;
+        Fliping = 1;
         dutyCycle1 = 16;
         dutyCycle2 = 48;
     }
     else if (level == 3)
     {
         Fliping = 1;
-        dutyCycle1 = 16;
-        dutyCycle2 = 63;
+        dutyCycle1 = 32;
+        dutyCycle2 = 48;
     }
 }
 

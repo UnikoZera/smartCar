@@ -1,10 +1,7 @@
-#include <REGX52.H>
+#include <REGX52.H>s
 #include <intrins.h>
 #include "carMovement.h"
 #include "carTracking.h"
-
-sbit det = P3^5;
-sbit out = P2^4;
 
 void Delay1000ms(void)	//@11.0592MHz
 {
@@ -29,15 +26,7 @@ void main()
 	Timer1_Init();
 	while(1)
 	{
+		// Tracking();
 		carStop();
-		if (det == 1)
-		{
-			out = 1;
-		}
-		else
-		{
-			// Tracking();
-			out = 0;
-		}
-	}		
+	}
 }
