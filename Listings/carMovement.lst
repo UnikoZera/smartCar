@@ -1,4 +1,4 @@
-C51 COMPILER V9.54   CARMOVEMENT                                                           11/21/2024 22:02:59 PAGE 1   
+C51 COMPILER V9.54   CARMOVEMENT                                                           11/27/2024 23:34:35 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE CARMOVEMENT
@@ -62,7 +62,7 @@ line level    source
   52   1          {
   53   2              if (Fliping == 1 && States == 2)
   54   2              {
-C51 COMPILER V9.54   CARMOVEMENT                                                           11/21/2024 22:02:59 PAGE 2   
+C51 COMPILER V9.54   CARMOVEMENT                                                           11/27/2024 23:34:35 PAGE 2   
 
   55   3                  IN1F = 1;
   56   3                  IN2F = 0;
@@ -126,7 +126,7 @@ line level    source
  114          
  115          void carMoveForward(short int level)
  116          {
-C51 COMPILER V9.54   CARMOVEMENT                                                           11/21/2024 22:02:59 PAGE 3   
+C51 COMPILER V9.54   CARMOVEMENT                                                           11/27/2024 23:34:35 PAGE 3   
 
  117   1          States = 0;
  118   1          if (level == 1)
@@ -141,124 +141,105 @@ line level    source
  127   2          }
  128   1          else if (level == 3)
  129   1          {
- 130   2              dutyCycle1 = 48;
- 131   2              dutyCycle2 = 48;
+ 130   2              dutyCycle1 = 63;
+ 131   2              dutyCycle2 = 63;
  132   2          }
- 133   1          else if (level == 4)
- 134   1          {
- 135   2              dutyCycle1 = 63;
- 136   2              dutyCycle2 = 63;
- 137   2          }
- 138   1      }
- 139          
- 140          void carTurnRight(short int level)
- 141          {
- 142   1              States = 1;
- 143   1          if (level == 1)
- 144   1          {
- 145   2              Fliping = 0;
- 146   2              dutyCycle1 = 48;
- 147   2              dutyCycle2 = 16;
- 148   2          }
- 149   1          else if (level == 2)
- 150   1          {
- 151   2              Fliping = 1;
- 152   2              dutyCycle1 = 48;
- 153   2              dutyCycle2 = 16;
- 154   2          }
- 155   1          else if (level == 3)
+ 133   1      }
+ 134          
+ 135          void carTurnRight(short int level)
+ 136          {
+ 137   1              States = 1;
+ 138   1          if (level == 1)
+ 139   1          {
+ 140   2              Fliping = 1;
+ 141   2              dutyCycle1 = 48;
+ 142   2              dutyCycle2 = 16;
+ 143   2          }
+ 144   1          else if (level == 2)
+ 145   1          {
+ 146   2              Fliping = 1;
+ 147   2              dutyCycle1 = 48;
+ 148   2              dutyCycle2 = 32;
+ 149   2          }
+ 150   1      }
+ 151          
+ 152          void carTurnLeft(short int level)
+ 153          {
+ 154   1          States = 2;
+ 155   1          if (level == 1)
  156   1          {
  157   2              Fliping = 1;
- 158   2              dutyCycle1 = 48;
- 159   2              dutyCycle2 = 32;
+ 158   2              dutyCycle1 = 16;
+ 159   2              dutyCycle2 = 48;
  160   2          }
- 161   1      }
- 162          
- 163          void carTurnLeft(short int level)
- 164          {
- 165   1          States = 2;
- 166   1          if (level == 1)
- 167   1          {
- 168   2              Fliping = 0;
- 169   2              dutyCycle1 = 16;
- 170   2              dutyCycle2 = 48;
- 171   2          }
- 172   1          else if (level == 2)
- 173   1          {
- 174   2              Fliping = 1;
- 175   2              dutyCycle1 = 16;
- 176   2              dutyCycle2 = 48;
- 177   2          }
- 178   1          else if (level == 3)
-C51 COMPILER V9.54   CARMOVEMENT                                                           11/21/2024 22:02:59 PAGE 4   
+ 161   1          else if (level == 2)
+ 162   1          {
+ 163   2              Fliping = 1;
+ 164   2              dutyCycle1 = 32;
+ 165   2              dutyCycle2 = 48;
+ 166   2          }
+ 167   1      }
+ 168          
+ 169          void carStop()
+ 170          {
+ 171   1          States = 3;
+ 172   1          IN1F = 0;
+ 173   1          IN2F = 0;
+ 174   1          IN3F = 0;
+ 175   1          IN4F = 0;
+ 176   1          IN1B = 0;
+ 177   1          IN2B = 0;
+ 178   1          IN3B = 0;
+C51 COMPILER V9.54   CARMOVEMENT                                                           11/27/2024 23:34:35 PAGE 4   
 
- 179   1          {
- 180   2              Fliping = 1;
- 181   2              dutyCycle1 = 32;
- 182   2              dutyCycle2 = 48;
- 183   2          }
- 184   1      }
- 185          
- 186          void carStop()
- 187          {
- 188   1          States = 3;
- 189   1          IN1F = 0;
- 190   1          IN2F = 0;
- 191   1          IN3F = 0;
- 192   1          IN4F = 0;
- 193   1          IN1B = 0;
- 194   1          IN2B = 0;
- 195   1          IN3B = 0;
- 196   1          IN4B = 0;
- 197   1      }
- 198          
- 199          void carMoveBackward()
- 200          {
- 201   1          States = 4;
- 202   1              IN1F = 1;
- 203   1              IN2F = 0;
- 204   1              IN3F = 0;
- 205   1              IN4F = 1;
- 206   1      
- 207   1          IN1B = 0;
- 208   1          IN2B = 1;
- 209   1          IN3B = 0;
- 210   1          IN4B = 1;
- 211   1      }
- 212          
- 213          void carSharpRight()
- 214          {
- 215   1          States = 5;
- 216   1              IN1F = 0;
- 217   1              IN2F = 1;
- 218   1              IN3F = 0;
- 219   1              IN4F = 1;
- 220   1      
- 221   1          IN1B = 1;
- 222   1          IN2B = 0;
- 223   1          IN3B = 0;
- 224   1          IN4B = 1;
- 225   1      }
- 226          
- 227          void carSharpLeft()
- 228          {
- 229   1          States = 6;
- 230   1              IN1F = 1;
- 231   1              IN2F = 0;
- 232   1              IN3F = 1;
- 233   1              IN4F = 0;
- 234   1      
- 235   1          IN1B = 0;
- 236   1          IN2B = 1;
- 237   1          IN3B = 1;
- 238   1          IN4B = 0;
- 239   1      }
-
-C51 COMPILER V9.54   CARMOVEMENT                                                           11/21/2024 22:02:59 PAGE 5   
+ 179   1          IN4B = 0;
+ 180   1      }
+ 181          
+ 182          void carMoveBackward()
+ 183          {
+ 184   1          States = 4;
+ 185   1              IN1F = 1;
+ 186   1              IN2F = 0;
+ 187   1              IN3F = 0;
+ 188   1              IN4F = 1;
+ 189   1      
+ 190   1          IN1B = 0;
+ 191   1          IN2B = 1;
+ 192   1          IN3B = 0;
+ 193   1          IN4B = 1;
+ 194   1      }
+ 195          
+ 196          void carSharpRight()
+ 197          {
+ 198   1          States = 5;
+ 199   1              IN1F = 0;
+ 200   1              IN2F = 1;
+ 201   1              IN3F = 0;
+ 202   1              IN4F = 1;
+ 203   1      
+ 204   1          IN1B = 1;
+ 205   1          IN2B = 0;
+ 206   1          IN3B = 0;
+ 207   1          IN4B = 1;
+ 208   1      }
+ 209          
+ 210          void carSharpLeft()
+ 211          {
+ 212   1          States = 6;
+ 213   1              IN1F = 1;
+ 214   1              IN2F = 0;
+ 215   1              IN3F = 1;
+ 216   1              IN4F = 0;
+ 217   1      
+ 218   1          IN1B = 0;
+ 219   1          IN2B = 1;
+ 220   1          IN3B = 1;
+ 221   1          IN4B = 0;
+ 222   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    507    ----
+   CODE SIZE        =    474    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
