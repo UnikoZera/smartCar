@@ -127,11 +127,6 @@ void carMoveForward(short int level)
     }
     else if (level == 3)
     {
-        dutyCycle1 = 48;
-        dutyCycle2 = 48;
-    }
-    else if (level == 4)
-    {
         dutyCycle1 = 63;
         dutyCycle2 = 63;
     }
@@ -142,17 +137,11 @@ void carTurnRight(short int level)
 	States = 1;
     if (level == 1)
     {
-        Fliping = 0;
-        dutyCycle1 = 48;
-        dutyCycle2 = 16;
-    }
-    else if (level == 2)
-    {
         Fliping = 1;
         dutyCycle1 = 48;
         dutyCycle2 = 16;
     }
-    else if (level == 3)
+    else if (level == 2)
     {
         Fliping = 1;
         dutyCycle1 = 48;
@@ -165,17 +154,11 @@ void carTurnLeft(short int level)
     States = 2;
     if (level == 1)
     {
-        Fliping = 0;
-        dutyCycle1 = 16;
-        dutyCycle2 = 48;
-    }
-    else if (level == 2)
-    {
         Fliping = 1;
         dutyCycle1 = 16;
         dutyCycle2 = 48;
     }
-    else if (level == 3)
+    else if (level == 2)
     {
         Fliping = 1;
         dutyCycle1 = 32;

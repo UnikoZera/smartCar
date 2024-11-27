@@ -1,4 +1,4 @@
-C51 COMPILER V9.54   MAIN                                                                  11/22/2024 10:32:20 PAGE 1   
+C51 COMPILER V9.54   MAIN                                                                  11/27/2024 23:01:48 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
@@ -20,9 +20,10 @@ line level    source
   10   1              while(1)
   11   1              {
   12   2                      Tracking();
-  13   2                      // carStop();
-  14   2              }
-  15   1      }
+  13   2                      // carMoveForward(2);
+  14   2                      // carMoveBackward();
+  15   2              }
+  16   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE

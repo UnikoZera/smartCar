@@ -4,7 +4,8 @@
             "name": "Target 1",
             "includePath": [
                 "D:\\mcu\\keil5\\C51\\INC",
-                "d:\\mcu\\projects\\smartCar"
+                "d:\\mcu\\projects\\smartCar",
+                "D:/mcu/Keil5/C51/INC/Atmel"
             ],
             "defines": [
                 "__C51__",

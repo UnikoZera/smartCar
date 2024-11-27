@@ -1,4 +1,4 @@
-C51 COMPILER V9.54   CARTRACKING                                                           11/22/2024 10:32:20 PAGE 1   
+C51 COMPILER V9.54   CARTRACKING                                                           11/27/2024 21:20:25 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE CARTRACKING
@@ -14,120 +14,102 @@ line level    source
    4          
    5          sbit Left_0 =   P3^7;
    6          sbit Left_1 =   P3^6;
-   7          sbit Left_2 =   P3^5;
-   8          sbit Middle_0 = P3^4; 
-   9          sbit Middle_1 = P1^3; 
-  10          sbit Right_0 =  P1^2;
-  11          sbit Right_1 =  P1^1;
-  12          sbit Right_2 =  P1^0;
-  13          
-  14          unsigned char valueState = 0;
-  15          unsigned char previousStates = 0;
-  16          
-  17          void Delay100us(void)   //@11.0592MHz
-  18          {
-  19   1              unsigned char data i;
-  20   1      
-  21   1              _nop_();
-  22   1              i = 43;
-  23   1              while (--i);
-  24   1      }
-  25          
-  26          //黑线是0，白线是1
-  27          void ChangeState() //调整小车冲出赛道的状态
-  28          {
-  29   1          if (previousStates == 0)
-  30   1          {
-  31   2              carMoveBackward();
-  32   2          }
-  33   1          else if (previousStates == 1)
-  34   1          {
-  35   2              carSharpRight(); //我不确定SharpRight是不是有点太sharp了
-  36   2          }
-  37   1          else if (previousStates == 2)
-  38   1          {
-  39   2              carSharpLeft();
-  40   2          }
-  41   1      }
-  42          
-  43          void Tracking()
-  44          {
-  45   1          //左边检查到黑线，但是右边nil
-  46   1          if ((Left_0 == 0 || Left_1 == 0 || Left_2 == 0 || Middle_0 == 0) && (Right_0 == 1 && Right_1 == 1 && R
-             -ight_2 == 1 && Middle_1 == 1))
-  47   1          {
-  48   2              if (Left_0 == 0)
-  49   2              {
-  50   3                  carSharpLeft();
+   7          sbit Middle_0 = P3^5; 
+   8          sbit Middle_1 = P1^2; 
+   9          sbit Right_0 =  P1^1;
+  10          sbit Right_1 =  P1^0;
+  11          
+  12          unsigned char valueState = 0;
+  13          unsigned char previousStates = 0;
+  14          
+  15          //黑线是0，白线是1
+  16          void ChangeState() //调整小车冲出赛道的状态
+  17          {
+  18   1          if (previousStates == 0)
+  19   1          {
+  20   2              carMoveBackward();
+  21   2          }
+  22   1          else if (previousStates == 1)
+  23   1          {
+  24   2              carSharpRight(); //我不确定SharpRight是不是有点太sharp了
+  25   2          }
+  26   1          else if (previousStates == 2)
+  27   1          {
+  28   2              carSharpLeft();
+  29   2          }
+  30   1      }
+  31          
+  32          void Tracking()
+  33          {
+  34   1          //左边检查到黑线，但是右边nil
+  35   1          if ((Left_0 == 0 || Left_1 == 0 || Middle_0 == 0) && (Right_0 == 1 && Right_1 == 1 && Middle_1 == 1))
+  36   1          {
+  37   2              if (Left_0 == 0)
+  38   2              {
+  39   3                  Fliping = 0;
+  40   3                  carSharpLeft();
+  41   3              }
+  42   2              else if (Left_1 == 0)
+  43   2              {
+  44   3                  Fliping = 1;
+  45   3                  carTurnLeft(2);
+  46   3              }
+  47   2              else if (Middle_0 == 0)
+  48   2              {
+  49   3                  Fliping = 0;
+  50   3                  carTurnLeft(1);
   51   3              }
-  52   2              else if (Left_1 == 0)
-  53   2              {
-C51 COMPILER V9.54   CARTRACKING                                                           11/22/2024 10:32:20 PAGE 2   
+  52   2          }
+  53   1          //右边检查到黑线，但是左边是nil
+  54   1          else if ((Left_0 == 1 && Left_1 == 1 && Middle_0 == 1) && (Right_0 == 0 || Right_1 == 0 || Middle_1 ==
+C51 COMPILER V9.54   CARTRACKING                                                           11/27/2024 21:20:25 PAGE 2   
 
-  54   3                  carTurnLeft(3);
-  55   3              }
-  56   2              else if (Left_2 == 0)
+             - 0))
+  55   1          {
+  56   2              if (Right_1 == 0)
   57   2              {
-  58   3                  carTurnLeft(2);
-  59   3              }
-  60   2              else if (Middle_0 == 0)
-  61   2              {
-  62   3                  carTurnLeft(1);
-  63   3              }
-  64   2          }
-  65   1          //右边检查到黑线，但是左边是nil
-  66   1          else if ( (Left_0 == 1 && Left_1 == 1 && Left_2 == 1 && Middle_0 == 1) && (Right_0 == 0 || Right_1 == 
-             -0 || Right_2 == 0 || Middle_1 == 0))
-  67   1          {
-  68   2              if (Right_2 == 0)
-  69   2              {
-  70   3                  carSharpRight();
-  71   3              }
-  72   2              else if (Right_1 == 0)
-  73   2              {
-  74   3                  carTurnRight(3);
-  75   3              }
-  76   2              else if (Right_0 = 0)
-*** WARNING C276 IN LINE 76 OF carTracking.c: constant in condition expression
-  77   2              {
-  78   3                  carTurnRight(2);
-  79   3              }
-  80   2              else if (Middle_1 == 0)
-  81   2              {
-  82   3                  carTurnRight(1);
-  83   3              }
-  84   2          }
-  85   1          else if ((Left_0 == 0 && Left_1 == 0 && Left_2 == 0 && Middle_0 == 0 && Middle_1 == 0 && Right_0 == 0 
-             -&& Right_1 == 0 && Right_2 == 0) || (Middle_0 == 0 && Middle_1 == 0) || (Middle_0 == 0 && Middle_1 == 0 && Left_2 == 0 &
-             -& Right_0 == 0) || (Middle_0 == 0 && Middle_1 == 0 && Left_2 == 0 && Left_1 == 0 && Right_0 == 0 && Right_2 == 0))
-  86   1          { 
-  87   2              carMoveForward(3); //暴力直走
-  88   2          }
-  89   1          else if ((Left_0 == 1 && Left_1 == 1 && Left_2 == 1 && Middle_0 == 1 && Middle_1 == 1 && Right_0 == 1 
-             -&& Right_1 == 1 && Right_2 == 1))
-  90   1          {
-  91   2              ChangeState(); //sb小车冲出赛道了 用函数调整一下
-  92   2          }
-  93   1          else
-  94   1          {
-  95   2              //什么情况？我也不知道要干什么 你自己看着办吧
-  96   2          }
-  97   1          
-  98   1      
-  99   1          if (valueState != States)   /*记忆上一次的状态*/
- 100   1          {
- 101   2              previousStates = valueState;
- 102   2              valueState = States;
- 103   2              Delay100us();
- 104   2          }
- 105   1      }
-*** WARNING C294 IN LINE 78 OF carTracking.c: unreachable code
+  58   3                  Fliping = 0;
+  59   3                  carSharpRight();
+  60   3              }
+  61   2              else if (Right_0 = 0)
+*** WARNING C276 IN LINE 61 OF carTracking.c: constant in condition expression
+  62   2              {
+  63   3                  Fliping = 1;
+  64   3                  carTurnRight(2);
+  65   3              }
+  66   2              else if (Middle_1 == 0)
+  67   2              {
+  68   3                  Fliping = 0;
+  69   3                  carTurnRight(1);
+  70   3              }
+  71   2          }
+  72   1          else if ((Left_0 == 0 && Left_1 == 0 && Middle_0 == 0 && Middle_1 == 0 && Right_0 == 0 && Right_1 == 0
+             -) || (Middle_0 == 0 && Middle_1 == 0) || (Middle_0 == 0 && Middle_1 == 0 && Right_0 == 0 && Left_0 == 0))
+  73   1          { 
+  74   2              carMoveForward(2); //暴力直走
+  75   2          }
+  76   1          else if ((Left_0 == 1 && Left_1 == 1 && Middle_0 == 1 && Middle_1 == 1 && Right_0 == 1 && Right_1 == 1
+             -))
+  77   1          {
+  78   2              ChangeState(); //sb小车冲出赛道了 用函数调整一下
+  79   2          }
+  80   1          else
+  81   1          {
+  82   2           
+  83   2          }
+  84   1          
+  85   1      
+  86   1          if (valueState != States)   /*记忆上一次的状态*/
+  87   1          {
+  88   2              previousStates = valueState;
+  89   2              valueState = States;
+  90   2          }
+  91   1      }
+*** WARNING C294 IN LINE 63 OF carTracking.c: unreachable code
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    259    ----
-C51 COMPILER V9.54   CARTRACKING                                                           11/22/2024 10:32:20 PAGE 3   
-
+   CODE SIZE        =    205    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

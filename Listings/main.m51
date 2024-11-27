@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22                                                        11/22/2024  10:32:20  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22                                                        11/27/2024  23:01:49  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
@@ -31,27 +31,26 @@ LINK MAP OF MODULE:  .\Objects\main (MAIN)
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
-            CODE    0003H     0006H     UNIT         ?PR?DELAY100US?CARTRACKING
-                    0009H     0002H                  *** GAP ***
+                    0003H     0008H                  *** GAP ***
             CODE    000BH     0003H     ABSOLUTE     
             CODE    000EH     000BH     UNIT         ?PR?MAIN?MAIN
                     0019H     0002H                  *** GAP ***
             CODE    001BH     0003H     ABSOLUTE     
-            CODE    001EH     00E5H     UNIT         ?PR?TRACKING?CARTRACKING
-            CODE    0103H     008CH     UNIT         ?C_C51STARTUP
-            CODE    018FH     007FH     UNIT         ?PR?TIMER0_ISR?CARMOVEMENT
-            CODE    020EH     007FH     UNIT         ?PR?TIMER1_ISR?CARMOVEMENT
-            CODE    028DH     0037H     UNIT         ?PR?_CARMOVEFORWARD?CARMOVEMENT
-            CODE    02C4H     002DH     UNIT         ?PR?_CARTURNRIGHT?CARMOVEMENT
-            CODE    02F1H     002BH     UNIT         ?PR?_CARTURNLEFT?CARMOVEMENT
-            CODE    031CH     0019H     UNIT         ?C_INITSEG
-            CODE    0335H     0018H     UNIT         ?PR?CHANGESTATE?CARTRACKING
-            CODE    034DH     0014H     UNIT         ?PR?CARSTOP?CARMOVEMENT
-            CODE    0361H     0014H     UNIT         ?PR?CARMOVEBACKWARD?CARMOVEMENT
-            CODE    0375H     0014H     UNIT         ?PR?CARSHARPRIGHT?CARMOVEMENT
-            CODE    0389H     0014H     UNIT         ?PR?CARSHARPLEFT?CARMOVEMENT
-            CODE    039DH     0010H     UNIT         ?PR?TIMER0_INIT?CARMOVEMENT
-            CODE    03ADH     000EH     UNIT         ?PR?TIMER1_INIT?CARMOVEMENT
+            CODE    001EH     00B5H     UNIT         ?PR?TRACKING?CARTRACKING
+            CODE    00D3H     008CH     UNIT         ?C_C51STARTUP
+            CODE    015FH     007FH     UNIT         ?PR?TIMER0_ISR?CARMOVEMENT
+            CODE    01DEH     007FH     UNIT         ?PR?TIMER1_ISR?CARMOVEMENT
+            CODE    025DH     0037H     UNIT         ?PR?_CARMOVEFORWARD?CARMOVEMENT
+            CODE    0294H     002DH     UNIT         ?PR?_CARTURNRIGHT?CARMOVEMENT
+            CODE    02C1H     002BH     UNIT         ?PR?_CARTURNLEFT?CARMOVEMENT
+            CODE    02ECH     0019H     UNIT         ?C_INITSEG
+            CODE    0305H     0018H     UNIT         ?PR?CHANGESTATE?CARTRACKING
+            CODE    031DH     0014H     UNIT         ?PR?CARSTOP?CARMOVEMENT
+            CODE    0331H     0014H     UNIT         ?PR?CARMOVEBACKWARD?CARMOVEMENT
+            CODE    0345H     0014H     UNIT         ?PR?CARSHARPRIGHT?CARMOVEMENT
+            CODE    0359H     0014H     UNIT         ?PR?CARSHARPLEFT?CARMOVEMENT
+            CODE    036DH     0010H     UNIT         ?PR?TIMER0_INIT?CARMOVEMENT
+            CODE    037DH     000EH     UNIT         ?PR?TIMER1_INIT?CARMOVEMENT
 
 
 
@@ -59,10 +58,10 @@ OVERLAY MAP OF MODULE:   .\Objects\main (MAIN)
 
 
 SEGMENT
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/22/2024  10:32:20  PAGE 2
-
-
   +--> CALLED SEGMENT
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/27/2024  23:01:49  PAGE 2
+
+
 ---------------------
 ?C_C51STARTUP
   +--> ?PR?MAIN?MAIN
@@ -80,7 +79,6 @@ SEGMENT
   +--> ?PR?_CARTURNRIGHT?CARMOVEMENT
   +--> ?PR?_CARMOVEFORWARD?CARMOVEMENT
   +--> ?PR?CHANGESTATE?CARTRACKING
-  +--> ?PR?DELAY100US?CARTRACKING
 
 ?PR?CHANGESTATE?CARTRACKING
   +--> ?PR?CARMOVEBACKWARD?CARMOVEMENT
@@ -105,7 +103,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\main (MAIN)
   C:0014H         LINE#         10
   C:0014H         LINE#         11
   C:0014H         LINE#         12
-  C:0017H         LINE#         14
+  C:0017H         LINE#         15
   -------         ENDPROC       MAIN
   -------         ENDMOD        MAIN
 
@@ -113,26 +111,26 @@ SYMBOL TABLE OF MODULE:  .\Objects\main (MAIN)
   C:0000H         SYMBOL        _ICE_DUMMY_
   D:0080H         PUBLIC        P0
   D:00A0H         PUBLIC        P2
-  C:018FH         PUBLIC        Timer0_ISR
-  C:020EH         PUBLIC        Timer1_ISR
+  C:015FH         PUBLIC        Timer0_ISR
+  C:01DEH         PUBLIC        Timer1_ISR
   B:00A8H.7       PUBLIC        EA
   B:00A0H.2       PUBLIC        IN1B
   B:00A0H.3       PUBLIC        IN2B
   B:0080H.2       PUBLIC        IN3B
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/22/2024  10:32:20  PAGE 3
-
-
   B:0080H.3       PUBLIC        IN4B
   B:00A0H.0       PUBLIC        IN1F
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/27/2024  23:01:49  PAGE 3
+
+
   B:00A0H.1       PUBLIC        IN2F
   B:0080H.1       PUBLIC        IN3F
   B:0080H.0       PUBLIC        IN4F
-  C:039DH         PUBLIC        Timer0_Init
-  C:028DH         PUBLIC        _carMoveForward
-  C:03ADH         PUBLIC        Timer1_Init
+  C:036DH         PUBLIC        Timer0_Init
+  C:025DH         PUBLIC        _carMoveForward
+  C:037DH         PUBLIC        Timer1_Init
   D:0089H         PUBLIC        TMOD
-  C:0375H         PUBLIC        carSharpRight
-  C:0389H         PUBLIC        carSharpLeft
+  C:0345H         PUBLIC        carSharpRight
+  C:0359H         PUBLIC        carSharpLeft
   B:00A8H.1       PUBLIC        ET0
   B:00A8H.3       PUBLIC        ET1
   D:008CH         PUBLIC        TH0
@@ -142,252 +140,252 @@ SYMBOL TABLE OF MODULE:  .\Objects\main (MAIN)
   D:008BH         PUBLIC        TL1
   B:0088H.4       PUBLIC        TR0
   B:0088H.6       PUBLIC        TR1
-  C:034DH         PUBLIC        carStop
-  C:02C4H         PUBLIC        _carTurnRight
+  C:031DH         PUBLIC        carStop
+  C:0294H         PUBLIC        _carTurnRight
   D:000BH         PUBLIC        dutyCycle1
   D:000CH         PUBLIC        dutyCycle2
-  C:02F1H         PUBLIC        _carTurnLeft
-  C:0361H         PUBLIC        carMoveBackward
+  C:02C1H         PUBLIC        _carTurnLeft
+  C:0331H         PUBLIC        carMoveBackward
   D:000DH         PUBLIC        States
   -------         PROC          TIMER0_INIT
-  C:039DH         LINE#         20
-  C:039DH         LINE#         21
-  C:039DH         LINE#         22
-  C:03A0H         LINE#         23
-  C:03A3H         LINE#         24
-  C:03A6H         LINE#         25
-  C:03A8H         LINE#         26
-  C:03AAH         LINE#         27
-  C:03ACH         LINE#         28
+  C:036DH         LINE#         20
+  C:036DH         LINE#         21
+  C:036DH         LINE#         22
+  C:0370H         LINE#         23
+  C:0373H         LINE#         24
+  C:0376H         LINE#         25
+  C:0378H         LINE#         26
+  C:037AH         LINE#         27
+  C:037CH         LINE#         28
   -------         ENDPROC       TIMER0_INIT
   -------         PROC          TIMER1_INIT
-  C:03ADH         LINE#         30
-  C:03ADH         LINE#         31
-  C:03ADH         LINE#         32
-  C:03B0H         LINE#         33
-  C:03B3H         LINE#         34
-  C:03B6H         LINE#         35
-  C:03B8H         LINE#         36
-  C:03BAH         LINE#         37
+  C:037DH         LINE#         30
+  C:037DH         LINE#         31
+  C:037DH         LINE#         32
+  C:0380H         LINE#         33
+  C:0383H         LINE#         34
+  C:0386H         LINE#         35
+  C:0388H         LINE#         36
+  C:038AH         LINE#         37
   -------         ENDPROC       TIMER1_INIT
   -------         PROC          TIMER0_ISR
   -------         DO            
   D:0008H         SYMBOL        pwmCounter1
   -------         ENDDO         
-  C:018FH         LINE#         39
-  C:0193H         LINE#         42
-  C:0196H         LINE#         43
-  C:0199H         LINE#         45
-  C:019BH         LINE#         46
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/22/2024  10:32:20  PAGE 4
+  C:015FH         LINE#         39
+  C:0163H         LINE#         42
+  C:0166H         LINE#         43
+  C:0169H         LINE#         45
+  C:016BH         LINE#         46
+  C:0172H         LINE#         47
+  C:0172H         LINE#         48
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/27/2024  23:01:49  PAGE 4
 
 
-  C:01A2H         LINE#         47
-  C:01A2H         LINE#         48
-  C:01A5H         LINE#         49
-  C:01A5H         LINE#         51
-  C:01C4H         LINE#         52
-  C:01C4H         LINE#         53
-  C:01CEH         LINE#         54
-  C:01CEH         LINE#         55
-  C:01D0H         LINE#         56
-  C:01D2H         LINE#         57
-  C:01D4H         LINE#         58
-  C:01D6H         LINE#         59
-  C:01D8H         LINE#         61
-  C:01D8H         LINE#         62
-  C:01DAH         LINE#         63
-  C:01DCH         LINE#         64
-  C:01DEH         LINE#         65
-  C:01E0H         LINE#         66
-  C:01E0H         LINE#         67
-  C:01E2H         LINE#         68
-  C:0201H         LINE#         69
-  C:0201H         LINE#         70
-  C:0203H         LINE#         71
-  C:0205H         LINE#         72
-  C:0207H         LINE#         73
-  C:0209H         LINE#         74
-  C:0209H         LINE#         75
+  C:0175H         LINE#         49
+  C:0175H         LINE#         51
+  C:0194H         LINE#         52
+  C:0194H         LINE#         53
+  C:019EH         LINE#         54
+  C:019EH         LINE#         55
+  C:01A0H         LINE#         56
+  C:01A2H         LINE#         57
+  C:01A4H         LINE#         58
+  C:01A6H         LINE#         59
+  C:01A8H         LINE#         61
+  C:01A8H         LINE#         62
+  C:01AAH         LINE#         63
+  C:01ACH         LINE#         64
+  C:01AEH         LINE#         65
+  C:01B0H         LINE#         66
+  C:01B0H         LINE#         67
+  C:01B2H         LINE#         68
+  C:01D1H         LINE#         69
+  C:01D1H         LINE#         70
+  C:01D3H         LINE#         71
+  C:01D5H         LINE#         72
+  C:01D7H         LINE#         73
+  C:01D9H         LINE#         74
+  C:01D9H         LINE#         75
   -------         ENDPROC       TIMER0_ISR
   -------         PROC          TIMER1_ISR
   -------         DO            
   D:0009H         SYMBOL        pwmCounter2
   -------         ENDDO         
-  C:020EH         LINE#         77
-  C:0212H         LINE#         80
-  C:0215H         LINE#         81
-  C:0218H         LINE#         83
-  C:021AH         LINE#         84
-  C:0221H         LINE#         85
-  C:0221H         LINE#         86
-  C:0224H         LINE#         87
-  C:0224H         LINE#         89
-  C:0243H         LINE#         90
-  C:0243H         LINE#         91
-  C:024DH         LINE#         92
-  C:024DH         LINE#         93
-  C:024FH         LINE#         94
-  C:0251H         LINE#         95
-  C:0253H         LINE#         96
-  C:0255H         LINE#         97
-  C:0257H         LINE#         99
-  C:0257H         LINE#         100
-  C:0259H         LINE#         101
-  C:025BH         LINE#         102
-  C:025DH         LINE#         103
-  C:025FH         LINE#         104
-  C:025FH         LINE#         105
-  C:0261H         LINE#         106
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/22/2024  10:32:20  PAGE 5
+  C:01DEH         LINE#         77
+  C:01E2H         LINE#         80
+  C:01E5H         LINE#         81
+  C:01E8H         LINE#         83
+  C:01EAH         LINE#         84
+  C:01F1H         LINE#         85
+  C:01F1H         LINE#         86
+  C:01F4H         LINE#         87
+  C:01F4H         LINE#         89
+  C:0213H         LINE#         90
+  C:0213H         LINE#         91
+  C:021DH         LINE#         92
+  C:021DH         LINE#         93
+  C:021FH         LINE#         94
+  C:0221H         LINE#         95
+  C:0223H         LINE#         96
+  C:0225H         LINE#         97
+  C:0227H         LINE#         99
+  C:0227H         LINE#         100
+  C:0229H         LINE#         101
+  C:022BH         LINE#         102
+  C:022DH         LINE#         103
+  C:022FH         LINE#         104
+  C:022FH         LINE#         105
+  C:0231H         LINE#         106
+  C:0250H         LINE#         107
+  C:0250H         LINE#         108
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/27/2024  23:01:49  PAGE 5
 
 
-  C:0280H         LINE#         107
-  C:0280H         LINE#         108
-  C:0282H         LINE#         109
-  C:0284H         LINE#         110
-  C:0286H         LINE#         111
-  C:0288H         LINE#         112
-  C:0288H         LINE#         113
+  C:0252H         LINE#         109
+  C:0254H         LINE#         110
+  C:0256H         LINE#         111
+  C:0258H         LINE#         112
+  C:0258H         LINE#         113
   -------         ENDPROC       TIMER1_ISR
   -------         PROC          _CARMOVEFORWARD
   D:0006H         SYMBOL        level
-  C:028DH         LINE#         115
-  C:028DH         LINE#         116
-  C:028DH         LINE#         117
-  C:0290H         LINE#         118
-  C:0296H         LINE#         119
-  C:0296H         LINE#         120
-  C:0299H         LINE#         121
-  C:029CH         LINE#         122
-  C:029DH         LINE#         123
-  C:02A3H         LINE#         124
-  C:02A3H         LINE#         125
-  C:02A6H         LINE#         126
-  C:02A9H         LINE#         127
-  C:02AAH         LINE#         128
-  C:02B0H         LINE#         129
-  C:02B0H         LINE#         130
-  C:02B3H         LINE#         131
-  C:02B6H         LINE#         132
-  C:02B7H         LINE#         133
-  C:02BDH         LINE#         134
-  C:02BDH         LINE#         135
-  C:02C0H         LINE#         136
-  C:02C3H         LINE#         137
-  C:02C3H         LINE#         138
+  C:025DH         LINE#         115
+  C:025DH         LINE#         116
+  C:025DH         LINE#         117
+  C:0260H         LINE#         118
+  C:0266H         LINE#         119
+  C:0266H         LINE#         120
+  C:0269H         LINE#         121
+  C:026CH         LINE#         122
+  C:026DH         LINE#         123
+  C:0273H         LINE#         124
+  C:0273H         LINE#         125
+  C:0276H         LINE#         126
+  C:0279H         LINE#         127
+  C:027AH         LINE#         128
+  C:0280H         LINE#         129
+  C:0280H         LINE#         130
+  C:0283H         LINE#         131
+  C:0286H         LINE#         132
+  C:0287H         LINE#         133
+  C:028DH         LINE#         134
+  C:028DH         LINE#         135
+  C:0290H         LINE#         136
+  C:0293H         LINE#         137
+  C:0293H         LINE#         138
   -------         ENDPROC       _CARMOVEFORWARD
   -------         PROC          _CARTURNRIGHT
   D:0006H         SYMBOL        level
-  C:02C4H         LINE#         140
-  C:02C4H         LINE#         141
-  C:02C4H         LINE#         142
-  C:02C7H         LINE#         143
-  C:02CDH         LINE#         144
-  C:02CDH         LINE#         145
-  C:02CFH         LINE#         146
-  C:02CFH         LINE#         147
-  C:02CFH         LINE#         148
-  C:02D1H         LINE#         149
-  C:02D7H         LINE#         150
-  C:02D7H         LINE#         151
-  C:02DAH         LINE#         152
-  C:02DDH         LINE#         153
-  C:02E0H         LINE#         154
-  C:02E1H         LINE#         155
-  C:02E7H         LINE#         156
-  C:02E7H         LINE#         157
-  C:02EAH         LINE#         158
-  C:02EDH         LINE#         159
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/22/2024  10:32:20  PAGE 6
+  C:0294H         LINE#         140
+  C:0294H         LINE#         141
+  C:0294H         LINE#         142
+  C:0297H         LINE#         143
+  C:029DH         LINE#         144
+  C:029DH         LINE#         145
+  C:029FH         LINE#         146
+  C:029FH         LINE#         147
+  C:029FH         LINE#         148
+  C:02A1H         LINE#         149
+  C:02A7H         LINE#         150
+  C:02A7H         LINE#         151
+  C:02AAH         LINE#         152
+  C:02ADH         LINE#         153
+  C:02B0H         LINE#         154
+  C:02B1H         LINE#         155
+  C:02B7H         LINE#         156
+  C:02B7H         LINE#         157
+  C:02BAH         LINE#         158
+  C:02BDH         LINE#         159
+  C:02C0H         LINE#         160
+  C:02C0H         LINE#         161
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/27/2024  23:01:49  PAGE 6
 
 
-  C:02F0H         LINE#         160
-  C:02F0H         LINE#         161
   -------         ENDPROC       _CARTURNRIGHT
   -------         PROC          _CARTURNLEFT
   D:0006H         SYMBOL        level
-  C:02F1H         LINE#         163
-  C:02F1H         LINE#         164
-  C:02F1H         LINE#         165
-  C:02F4H         LINE#         166
-  C:02FAH         LINE#         167
-  C:02FAH         LINE#         168
-  C:02FCH         LINE#         169
-  C:02FCH         LINE#         170
-  C:02FCH         LINE#         171
-  C:02FEH         LINE#         172
-  C:0304H         LINE#         173
-  C:0304H         LINE#         174
-  C:0307H         LINE#         175
-  C:030AH         LINE#         176
-  C:030AH         LINE#         177
-  C:030CH         LINE#         178
-  C:0312H         LINE#         179
-  C:0312H         LINE#         180
-  C:0315H         LINE#         181
-  C:0318H         LINE#         182
-  C:031BH         LINE#         183
-  C:031BH         LINE#         184
+  C:02C1H         LINE#         163
+  C:02C1H         LINE#         164
+  C:02C1H         LINE#         165
+  C:02C4H         LINE#         166
+  C:02CAH         LINE#         167
+  C:02CAH         LINE#         168
+  C:02CCH         LINE#         169
+  C:02CCH         LINE#         170
+  C:02CCH         LINE#         171
+  C:02CEH         LINE#         172
+  C:02D4H         LINE#         173
+  C:02D4H         LINE#         174
+  C:02D7H         LINE#         175
+  C:02DAH         LINE#         176
+  C:02DAH         LINE#         177
+  C:02DCH         LINE#         178
+  C:02E2H         LINE#         179
+  C:02E2H         LINE#         180
+  C:02E5H         LINE#         181
+  C:02E8H         LINE#         182
+  C:02EBH         LINE#         183
+  C:02EBH         LINE#         184
   -------         ENDPROC       _CARTURNLEFT
   -------         PROC          CARSTOP
-  C:034DH         LINE#         186
-  C:034DH         LINE#         187
-  C:034DH         LINE#         188
-  C:0350H         LINE#         189
-  C:0352H         LINE#         190
-  C:0354H         LINE#         191
-  C:0356H         LINE#         192
-  C:0358H         LINE#         193
-  C:035AH         LINE#         194
-  C:035CH         LINE#         195
-  C:035EH         LINE#         196
-  C:0360H         LINE#         197
+  C:031DH         LINE#         186
+  C:031DH         LINE#         187
+  C:031DH         LINE#         188
+  C:0320H         LINE#         189
+  C:0322H         LINE#         190
+  C:0324H         LINE#         191
+  C:0326H         LINE#         192
+  C:0328H         LINE#         193
+  C:032AH         LINE#         194
+  C:032CH         LINE#         195
+  C:032EH         LINE#         196
+  C:0330H         LINE#         197
   -------         ENDPROC       CARSTOP
   -------         PROC          CARMOVEBACKWARD
-  C:0361H         LINE#         199
-  C:0361H         LINE#         200
-  C:0361H         LINE#         201
-  C:0364H         LINE#         202
-  C:0366H         LINE#         203
-  C:0368H         LINE#         204
-  C:036AH         LINE#         205
-  C:036CH         LINE#         207
-  C:036EH         LINE#         208
-  C:0370H         LINE#         209
-  C:0372H         LINE#         210
-  C:0374H         LINE#         211
+  C:0331H         LINE#         199
+  C:0331H         LINE#         200
+  C:0331H         LINE#         201
+  C:0334H         LINE#         202
+  C:0336H         LINE#         203
+  C:0338H         LINE#         204
+  C:033AH         LINE#         205
+  C:033CH         LINE#         207
+  C:033EH         LINE#         208
+  C:0340H         LINE#         209
+  C:0342H         LINE#         210
+  C:0344H         LINE#         211
   -------         ENDPROC       CARMOVEBACKWARD
   -------         PROC          CARSHARPRIGHT
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/22/2024  10:32:20  PAGE 7
+  C:0345H         LINE#         213
+  C:0345H         LINE#         214
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/27/2024  23:01:49  PAGE 7
 
 
-  C:0375H         LINE#         213
-  C:0375H         LINE#         214
-  C:0375H         LINE#         215
-  C:0378H         LINE#         216
-  C:037AH         LINE#         217
-  C:037CH         LINE#         218
-  C:037EH         LINE#         219
-  C:0380H         LINE#         221
-  C:0382H         LINE#         222
-  C:0384H         LINE#         223
-  C:0386H         LINE#         224
-  C:0388H         LINE#         225
+  C:0345H         LINE#         215
+  C:0348H         LINE#         216
+  C:034AH         LINE#         217
+  C:034CH         LINE#         218
+  C:034EH         LINE#         219
+  C:0350H         LINE#         221
+  C:0352H         LINE#         222
+  C:0354H         LINE#         223
+  C:0356H         LINE#         224
+  C:0358H         LINE#         225
   -------         ENDPROC       CARSHARPRIGHT
   -------         PROC          CARSHARPLEFT
-  C:0389H         LINE#         227
-  C:0389H         LINE#         228
-  C:0389H         LINE#         229
-  C:038CH         LINE#         230
-  C:038EH         LINE#         231
-  C:0390H         LINE#         232
-  C:0392H         LINE#         233
-  C:0394H         LINE#         235
-  C:0396H         LINE#         236
-  C:0398H         LINE#         237
-  C:039AH         LINE#         238
-  C:039CH         LINE#         239
+  C:0359H         LINE#         227
+  C:0359H         LINE#         228
+  C:0359H         LINE#         229
+  C:035CH         LINE#         230
+  C:035EH         LINE#         231
+  C:0360H         LINE#         232
+  C:0362H         LINE#         233
+  C:0364H         LINE#         235
+  C:0366H         LINE#         236
+  C:0368H         LINE#         237
+  C:036AH         LINE#         238
+  C:036CH         LINE#         239
   -------         ENDPROC       CARSHARPLEFT
   -------         ENDMOD        CARMOVEMENT
 
@@ -395,116 +393,99 @@ SYMBOL TABLE OF MODULE:  .\Objects\main (MAIN)
   C:0000H         SYMBOL        _ICE_DUMMY_
   D:0090H         PUBLIC        P1
   D:00B0H         PUBLIC        P3
-  B:0090H.2       PUBLIC        Right_0
-  B:0090H.1       PUBLIC        Right_1
-  B:0090H.0       PUBLIC        Right_2
+  B:0090H.1       PUBLIC        Right_0
+  B:0090H.0       PUBLIC        Right_1
   B:00B0H.7       PUBLIC        Left_0
   B:00B0H.6       PUBLIC        Left_1
-  B:00B0H.5       PUBLIC        Left_2
   D:000EH         PUBLIC        valueState
   C:001EH         PUBLIC        Tracking
-  C:0335H         PUBLIC        ChangeState
-  B:00B0H.4       PUBLIC        Middle_0
-  B:0090H.3       PUBLIC        Middle_1
-  C:0003H         PUBLIC        Delay100us
+  C:0305H         PUBLIC        ChangeState
+  B:00B0H.5       PUBLIC        Middle_0
+  B:0090H.2       PUBLIC        Middle_1
   D:000FH         PUBLIC        previousStates
-  -------         PROC          DELAY100US
-  -------         DO            
-  D:0007H         SYMBOL        i
-  -------         ENDDO         
-  C:0003H         LINE#         17
-  C:0003H         LINE#         18
-  C:0003H         LINE#         21
-  C:0004H         LINE#         22
-  C:0006H         LINE#         23
-  C:0008H         LINE#         24
-  -------         ENDPROC       DELAY100US
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/22/2024  10:32:20  PAGE 8
-
-
   -------         PROC          CHANGESTATE
-  C:0335H         LINE#         27
-  C:0335H         LINE#         28
-  C:0335H         LINE#         29
-  C:0339H         LINE#         30
-  C:0339H         LINE#         31
-  C:033CH         LINE#         32
-  C:033CH         LINE#         33
-  C:0341H         LINE#         34
-  C:0341H         LINE#         35
-  C:0344H         LINE#         36
-  C:0344H         LINE#         37
-  C:0349H         LINE#         38
-  C:0349H         LINE#         39
-  C:034CH         LINE#         40
-  C:034CH         LINE#         41
+  C:0305H         LINE#         16
+  C:0305H         LINE#         17
+  C:0305H         LINE#         18
+  C:0309H         LINE#         19
+  C:0309H         LINE#         20
+  C:030CH         LINE#         21
+  C:030CH         LINE#         22
+  C:0311H         LINE#         23
+  C:0311H         LINE#         24
+  C:0314H         LINE#         25
+  C:0314H         LINE#         26
+  C:0319H         LINE#         27
+  C:0319H         LINE#         28
+  C:031CH         LINE#         29
+  C:031CH         LINE#         30
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/27/2024  23:01:49  PAGE 8
+
+
   -------         ENDPROC       CHANGESTATE
   -------         PROC          TRACKING
-  C:001EH         LINE#         43
-  C:001EH         LINE#         44
-  C:001EH         LINE#         46
-  C:0036H         LINE#         47
-  C:0036H         LINE#         48
-  C:0039H         LINE#         49
-  C:0039H         LINE#         50
-  C:003CH         LINE#         51
-  C:003FH         LINE#         52
-  C:0042H         LINE#         53
-  C:0042H         LINE#         54
-  C:0044H         LINE#         55
-  C:0046H         LINE#         56
-  C:0049H         LINE#         57
-  C:0049H         LINE#         58
-  C:004BH         LINE#         59
-  C:004DH         LINE#         60
-  C:0053H         LINE#         61
-  C:0053H         LINE#         62
-  C:005AH         LINE#         63
-  C:005AH         LINE#         64
-  C:005DH         LINE#         66
-  C:0075H         LINE#         67
-  C:0075H         LINE#         68
-  C:0078H         LINE#         69
-  C:0078H         LINE#         70
-  C:007BH         LINE#         71
-  C:007DH         LINE#         72
-  C:0080H         LINE#         73
-  C:0080H         LINE#         74
-  C:0082H         LINE#         75
-  C:0084H         LINE#         76
-  C:0087H         LINE#         77
-  C:0087H         LINE#         78
-  C:0087H         LINE#         79
-  C:0087H         LINE#         80
-  C:008AH         LINE#         81
-  C:008AH         LINE#         82
-  C:0091H         LINE#         83
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/22/2024  10:32:20  PAGE 9
-
-
-  C:0091H         LINE#         84
-  C:0093H         LINE#         85
-  C:00CFH         LINE#         86
-  C:00CFH         LINE#         87
-  C:00D6H         LINE#         88
-  C:00D8H         LINE#         89
-  C:00F0H         LINE#         90
-  C:00F0H         LINE#         91
-  C:00F3H         LINE#         92
-  C:00F3H         LINE#         94
-  C:00F3H         LINE#         96
-  C:00F3H         LINE#         99
-  C:00F9H         LINE#         100
-  C:00F9H         LINE#         101
-  C:00FCH         LINE#         102
-  C:00FFH         LINE#         103
-  C:0102H         LINE#         104
-  C:0102H         LINE#         105
+  C:001EH         LINE#         32
+  C:001EH         LINE#         33
+  C:001EH         LINE#         35
+  C:0030H         LINE#         36
+  C:0030H         LINE#         37
+  C:0033H         LINE#         38
+  C:0033H         LINE#         39
+  C:0036H         LINE#         40
+  C:0039H         LINE#         41
+  C:003CH         LINE#         42
+  C:003FH         LINE#         43
+  C:003FH         LINE#         44
+  C:0042H         LINE#         45
+  C:0046H         LINE#         46
+  C:0048H         LINE#         47
+  C:004BH         LINE#         48
+  C:004BH         LINE#         49
+  C:004EH         LINE#         50
+  C:0054H         LINE#         51
+  C:0054H         LINE#         52
+  C:0056H         LINE#         54
+  C:0068H         LINE#         55
+  C:0068H         LINE#         56
+  C:006BH         LINE#         57
+  C:006BH         LINE#         58
+  C:006EH         LINE#         59
+  C:0071H         LINE#         60
+  C:0073H         LINE#         61
+  C:0076H         LINE#         62
+  C:0076H         LINE#         63
+  C:0076H         LINE#         64
+  C:0076H         LINE#         65
+  C:0076H         LINE#         66
+  C:0079H         LINE#         67
+  C:0079H         LINE#         68
+  C:007CH         LINE#         69
+  C:0082H         LINE#         70
+  C:0082H         LINE#         71
+  C:0084H         LINE#         72
+  C:00A8H         LINE#         73
+  C:00A8H         LINE#         74
+  C:00AFH         LINE#         75
+  C:00B1H         LINE#         76
+  C:00C3H         LINE#         77
+  C:00C3H         LINE#         78
+  C:00C6H         LINE#         79
+  C:00C6H         LINE#         81
+  C:00C6H         LINE#         83
+  C:00C6H         LINE#         86
+  C:00CCH         LINE#         87
+  C:00CCH         LINE#         88
+  C:00CFH         LINE#         89
+  C:00D2H         LINE#         90
+  C:00D2H         LINE#         91
   -------         ENDPROC       TRACKING
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/27/2024  23:01:49  PAGE 9
+
+
   -------         ENDMOD        CARTRACKING
 
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?CARSTOP?CARMOVEMENT
 
-Program Size: data=17.0 xdata=0 code=951
+Program Size: data=17.0 xdata=0 code=897
 LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)
