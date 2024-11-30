@@ -3,7 +3,6 @@
         {
             "name": "Target 1",
             "includePath": [
-                "D:\\mcu\\keil5\\C51\\INC",
                 "d:\\mcu\\projects\\smartCar"
             ],
             "defines": [

@@ -3,13 +3,12 @@
 
 sbit IN1F = P2^0;
 sbit IN2F = P2^1;
-sbit IN3F = P0^1;
-sbit IN4F = P0^0;
-
-sbit IN1B = P2^2;
-sbit IN2B = P2^3;
-sbit IN3B = P0^2;
-sbit IN4B = P0^3;
+sbit IN3F = P2^2;
+sbit IN4F = P2^3;
+sbit IN1B = P2^4;
+sbit IN2B = P2^5;
+sbit IN3B = P2^6;
+sbit IN4B = P2^7;
 
 #define PWM_PERIOD 64
 unsigned char dutyCycle1 = 32; //Left
@@ -48,7 +47,7 @@ void Timer0_ISR(void) interrupt 1
         pwmCounter1 = 0;
     }
 
-    if (pwmCounter1 < dutyCycle1 && (States != 3 && States != 4 && States != 5 && States != 6))
+    if (pwmCounter1 < dutyCycle1 && (States != 3 && States != 4))
     {
         if (Fliping == 1 && States == 2)
         {
@@ -65,7 +64,7 @@ void Timer0_ISR(void) interrupt 1
             IN2B = 0;
         }
     }
-    else if (pwmCounter1 >= dutyCycle1 && (States != 3 && States != 4 && States != 5 && States != 6))
+    else if (pwmCounter1 >= dutyCycle1 && (States != 3 && States != 4))
     {
         IN1F = 0;
         IN2F = 0;
@@ -86,7 +85,7 @@ void Timer1_ISR(void) interrupt 3
         pwmCounter2 = 0;
     }
 
-    if (pwmCounter2 < dutyCycle2 && (States != 3 && States != 4 && States != 5 && States != 6))
+    if (pwmCounter2 < dutyCycle2 && (States != 3 && States != 4))
     {
         if (Fliping == 1 && States == 1)
         {
@@ -103,7 +102,7 @@ void Timer1_ISR(void) interrupt 3
             IN4B = 0;
         }
     }
-    else if (pwmCounter2 >= dutyCycle2 && (States != 3 && States != 4 && States != 5 && States != 6))
+    else if (pwmCounter2 >= dutyCycle2 && (States != 3 && States != 4))
     {
         IN3F = 0;
         IN4F = 0;
@@ -137,14 +136,20 @@ void carTurnRight(short int level)
 	States = 1;
     if (level == 1)
     {
-        Fliping = 1;
-        dutyCycle1 = 48;
+        Fliping = 0;
+        dutyCycle1 = 32;
         dutyCycle2 = 16;
     }
     else if (level == 2)
     {
         Fliping = 1;
-        dutyCycle1 = 48;
+        dutyCycle1 = 32;
+        dutyCycle2 = 32;
+    }
+    else if (level == 3)
+    {
+        Fliping = 1;
+        dutyCycle1 = 63;
         dutyCycle2 = 32;
     }
 }
@@ -154,15 +159,21 @@ void carTurnLeft(short int level)
     States = 2;
     if (level == 1)
     {
-        Fliping = 1;
+        Fliping = 0;
         dutyCycle1 = 16;
-        dutyCycle2 = 48;
+        dutyCycle2 = 32;
     }
     else if (level == 2)
     {
         Fliping = 1;
         dutyCycle1 = 32;
-        dutyCycle2 = 48;
+        dutyCycle2 = 32;
+    }
+    else if (level == 3)
+    {
+        Fliping = 1;
+        dutyCycle1 = 32;
+        dutyCycle2 = 63;
     }
 }
 

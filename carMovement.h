@@ -10,5 +10,4 @@
     void Timer0_Init();
     void Timer1_Init();
     extern char States;
-    extern char Fliping;
 #endif
