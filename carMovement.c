@@ -14,6 +14,7 @@ sbit IN4B = P2^7;
 unsigned char dutyCycle1 = 32; //Left
 unsigned char dutyCycle2 = 32; //Right
 unsigned char States = 0;
+unsigned char specialStates = 0;
 unsigned char Fliping = 0; //1 means enable, 0 means disable
 
 void Timer0_Init(void)
@@ -47,7 +48,7 @@ void Timer0_ISR(void) interrupt 1
         pwmCounter1 = 0;
     }
 
-    if (pwmCounter1 < dutyCycle1 && (States != 3 && States != 4))
+    if (pwmCounter1 < dutyCycle1 && (States != 3 && States != 4 && specialStates == 0))
     {
         if (Fliping == 1 && States == 2)
         {
@@ -64,7 +65,7 @@ void Timer0_ISR(void) interrupt 1
             IN2B = 0;
         }
     }
-    else if (pwmCounter1 >= dutyCycle1 && (States != 3 && States != 4))
+    else if (pwmCounter1 >= dutyCycle1 && (States != 3 && States != 4 && specialStates == 0))
     {
         IN1F = 0;
         IN2F = 0;
@@ -85,7 +86,7 @@ void Timer1_ISR(void) interrupt 3
         pwmCounter2 = 0;
     }
 
-    if (pwmCounter2 < dutyCycle2 && (States != 3 && States != 4))
+    if (pwmCounter2 < dutyCycle2 && (States != 3 && States != 4 && specialStates == 0))
     {
         if (Fliping == 1 && States == 1)
         {
@@ -102,7 +103,7 @@ void Timer1_ISR(void) interrupt 3
             IN4B = 0;
         }
     }
-    else if (pwmCounter2 >= dutyCycle2 && (States != 3 && States != 4))
+    else if (pwmCounter2 >= dutyCycle2 && (States != 3 && States != 4 && specialStates == 0))
     {
         IN3F = 0;
         IN4F = 0;
@@ -114,6 +115,7 @@ void Timer1_ISR(void) interrupt 3
 void carMoveForward(short int level)
 {
     States = 0;
+    specialStates = 0;
     if (level == 1)
     {
         dutyCycle1 = 16;
@@ -121,8 +123,8 @@ void carMoveForward(short int level)
     }
     else if (level == 2)
     {
-        dutyCycle1 = 32;
-        dutyCycle2 = 32;
+        dutyCycle1 = 48;
+        dutyCycle2 = 48;
     }
     else if (level == 3)
     {
@@ -133,52 +135,55 @@ void carMoveForward(short int level)
 
 void carTurnRight(short int level)
 {
+    specialStates = 0;
 	States = 1;
     if (level == 1)
     {
         Fliping = 0;
-        dutyCycle1 = 32;
-        dutyCycle2 = 16;
+        dutyCycle1 = 48;
+        dutyCycle2 = 32;
     }
     else if (level == 2)
     {
         Fliping = 1;
-        dutyCycle1 = 32;
+        dutyCycle1 = 48;
         dutyCycle2 = 32;
     }
     else if (level == 3)
     {
         Fliping = 1;
         dutyCycle1 = 63;
-        dutyCycle2 = 32;
+        dutyCycle2 = 48;
     }
 }
 
 void carTurnLeft(short int level)
 {
+    specialStates = 0;
     States = 2;
     if (level == 1)
     {
         Fliping = 0;
-        dutyCycle1 = 16;
-        dutyCycle2 = 32;
+        dutyCycle1 = 32;
+        dutyCycle2 = 48;
     }
     else if (level == 2)
     {
         Fliping = 1;
         dutyCycle1 = 32;
-        dutyCycle2 = 32;
+        dutyCycle2 = 48;
     }
     else if (level == 3)
     {
         Fliping = 1;
-        dutyCycle1 = 32;
+        dutyCycle1 = 48;
         dutyCycle2 = 63;
     }
 }
 
 void carStop()
 {
+    specialStates = 0;
     States = 3;
     IN1F = 0;
     IN2F = 0;
@@ -192,7 +197,7 @@ void carStop()
 
 void carMoveBackward()
 {
-    States = 4;
+    specialStates = 1;
 	IN1F = 1;
 	IN2F = 0;
 	IN3F = 0;
@@ -206,7 +211,7 @@ void carMoveBackward()
 
 void carSharpRight()
 {
-    States = 5;
+    specialStates = 1;
 	IN1F = 0;
 	IN2F = 1;
 	IN3F = 0;
@@ -220,7 +225,7 @@ void carSharpRight()
 
 void carSharpLeft()
 {
-    States = 6;
+    specialStates = 1;
 	IN1F = 1;
 	IN2F = 0;
 	IN3F = 1;

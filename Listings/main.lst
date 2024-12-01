@@ -1,4 +1,4 @@
-C51 COMPILER V9.54   MAIN                                                                  11/30/2024 18:38:36 PAGE 1   
+C51 COMPILER V9.54   MAIN                                                                  12/01/2024 17:54:51 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
@@ -13,31 +13,21 @@ line level    source
    3          #include "carMovement.h"
    4          #include "carTracking.h"
    5          
-   6          sbit a = P1^0;
-   7          sbit b = P1^1;
-   8          
-   9          void main()
-  10          {
-  11   1              Timer0_Init();
-  12   1              Timer1_Init();
-  13   1              while(1)
-  14   1              {
-  15   2                      // carStop();
-  16   2                      Tracking();
-  17   2      
-  18   2                      // if (a==0)
-  19   2                      // {
-  20   2                      //      b = 0;
-  21   2                      // else
-  22   2                      // {
-  23   2                      //      b = 1;
-  24   2                      // }
-  25   2              }
-  26   1      }
+   6          void main()
+   7          {
+   8   1              Timer0_Init();
+   9   1              Timer1_Init();
+  10   1              while(1)
+  11   1              {
+  12   2                      CrossroadDetection();
+  13   2                      Tracking();
+  14   2                      // carSharpLeft();
+  15   2              }
+  16   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     11    ----
+   CODE SIZE        =     14    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
