@@ -15,36 +15,31 @@ unsigned char Crossroads = 0;
 unsigned char CanCounter = 1;
 
 //黑线是1，白线是0
-void Delay100us(void)	//@11.0592MHz
+void Delay200us(void)	//@11.0592MHz
 {
 	unsigned char data i;
 
 	_nop_();
-	i = 43;
+	i = 89;
 	while (--i);
 }
 
-void Delay6000ms(void)	//@11.0592MHz
+void Delay55ms(void)	//@11.0592MHz
 {
-	unsigned char data i, j, k;
+	unsigned char data i, j;
 
-	_nop_();
-	i = 43;
-	j = 6;
-	k = 203;
+	i = 99;
+	j = 154;
 	do
 	{
-		do
-		{
-			while (--k);
-		} while (--j);
+		while (--j);
 	} while (--i);
 }
 
 
 void ChangeState() //调整小车冲出赛道的状态
 {
-    carStop();
+    States = 5;
     if (previousStates == 0)
     {
         carMoveBackward();
@@ -61,17 +56,13 @@ void ChangeState() //调整小车冲出赛道的状态
 
 void Tracking()
 {
-    if (valueState != States)
-    {
-        previousStates = valueState;
-        valueState = States;
-    }
     //左边检查到黑线，但是右边nil
     if ((Left_0 == 1 || Left_1 == 1 || Middle_0 == 1) && (Right_0 == 0 && Middle_1 == 0 && Right_1 == 0))
     {
         if (Left_0 == 1)
         {
-            carTurnLeft(3);
+            carSharpLeft();
+            Delay55ms();
         }
         else if (Left_1 == 1)
         {
@@ -83,13 +74,14 @@ void Tracking()
         }
     }
     //右边检查到黑线，但是左边是nil
-    else if ((Left_0 == 0 && Left_1 == 0 && Middle_0 == 0) && (Right_0 == 1|| Middle_1 == 1 || Right_1 == 1))
+    else if ((Left_0 == 0 && Left_1 == 0 && Middle_0 == 0) && (Right_0 == 1 || Middle_1 == 1 || Right_1 == 1))
     {
         if (Right_1 == 1)
         {
-           carTurnRight(3);
+            carSharpRight(); 
+            Delay55ms();
         }
-        if (Right_0 == 1)
+        else if (Right_0 == 1)
         {
             carTurnRight(2);
         }
@@ -100,20 +92,20 @@ void Tracking()
     }
     else if ((Left_0 == 1 && Left_1 == 1 && Middle_0 == 1 && Middle_1 == 1 && Right_0 == 1 && Right_1 == 1) || (Middle_0 == 1 && Middle_1 == 1) || (Middle_0 == 1 && Middle_1 == 1 && Right_0 == 1 && Left_0 == 1))
     { 
-        carMoveForward(2); //暴力直走
+        carMoveForward(2);
     }
     else if ((Left_0 == 0 && Left_1 == 0 && Middle_0 == 0 && Middle_1 == 0 && Right_0 == 0 && Right_1 == 0))
     {
-        ChangeState();
+        // ChangeState();
     }
     else
     {
-        carStop();
+        // ChangeState();
     }
 
     if (valueState != States)
     {
-        Delay100us();
+        Delay200us();
     }
 }
 
@@ -125,9 +117,15 @@ void CrossroadDetection()
         CanCounter = 0;
     }
 
-    if (CanCounter == 0)
+    if (valueState != States)
     {
-        Delay6000ms();
-        CanCounter == 1;
+        previousStates = valueState;
+        valueState = States;
     }
+
+    // if (CanCounter == 0)
+    // {
+    //     Delay6000ms();
+    //     CanCounter == 1;
+    // }
 }

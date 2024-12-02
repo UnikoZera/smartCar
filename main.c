@@ -11,6 +11,6 @@ void main()
 	{
 		CrossroadDetection();
 		Tracking();
-		// carSharpLeft();
+		// carStop();
 	}
 }

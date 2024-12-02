@@ -1,4 +1,4 @@
-C51 COMPILER V9.54   CARMOVEMENT                                                           12/01/2024 17:50:40 PAGE 1   
+C51 COMPILER V9.54   CARMOVEMENT                                                           12/02/2024 21:02:08 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE CARMOVEMENT
@@ -62,7 +62,7 @@ line level    source
   52   1          {
   53   2              if (Fliping == 1 && States == 2)
   54   2              {
-C51 COMPILER V9.54   CARMOVEMENT                                                           12/01/2024 17:50:40 PAGE 2   
+C51 COMPILER V9.54   CARMOVEMENT                                                           12/02/2024 21:02:08 PAGE 2   
 
   55   3                  IN1F = 1;
   56   3                  IN2F = 0;
@@ -126,7 +126,7 @@ line level    source
  114          
  115          void carMoveForward(short int level)
  116          {
-C51 COMPILER V9.54   CARMOVEMENT                                                           12/01/2024 17:50:40 PAGE 3   
+C51 COMPILER V9.54   CARMOVEMENT                                                           12/02/2024 21:02:08 PAGE 3   
 
  117   1          States = 0;
  118   1          specialStates = 0;
@@ -137,8 +137,8 @@ line level    source
  123   2          }
  124   1          else if (level == 2)
  125   1          {
- 126   2              dutyCycle1 = 48;
- 127   2              dutyCycle2 = 48;
+ 126   2              dutyCycle1 = 32;
+ 127   2              dutyCycle2 = 32;
  128   2          }
  129   1          else if (level == 3)
  130   1          {
@@ -166,7 +166,7 @@ line level    source
  152   1          else if (level == 3)
  153   1          {
  154   2              Fliping = 1;
- 155   2              dutyCycle1 = 63;
+ 155   2              dutyCycle1 = 48;
  156   2              dutyCycle2 = 48;
  157   2          }
  158   1      }
@@ -190,10 +190,10 @@ line level    source
  176   1          else if (level == 3)
  177   1          {
  178   2              Fliping = 1;
-C51 COMPILER V9.54   CARMOVEMENT                                                           12/01/2024 17:50:40 PAGE 4   
+C51 COMPILER V9.54   CARMOVEMENT                                                           12/02/2024 21:02:08 PAGE 4   
 
  179   2              dutyCycle1 = 48;
- 180   2              dutyCycle2 = 63;
+ 180   2              dutyCycle2 = 48;
  181   2          }
  182   1      }
  183          
@@ -254,10 +254,10 @@ line level    source
  238   1      }
 
 
-C51 COMPILER V9.54   CARMOVEMENT                                                           12/01/2024 17:50:40 PAGE 5   
+C51 COMPILER V9.54   CARMOVEMENT                                                           12/02/2024 21:02:08 PAGE 5   
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    475    ----
+   CODE SIZE        =    473    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

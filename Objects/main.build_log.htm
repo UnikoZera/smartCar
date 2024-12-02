@@ -19,18 +19,21 @@ CPU DLL:         S8051.DLL V3.100.0.0
 Dialog DLL:      DP51.DLL V2.62.0.1 
 <h2>Project:</h2>
 D:\mcu\projects\smartCar\main.uvproj
-Project File Date:  11/19/2024
+Project File Date:  12/02/2024
 
 <h2>Output:</h2>
 Build target 'Target 1'
-compiling main.c...
 compiling carTracking.c...
 linking...
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?DELAY1000MS?CARTRACKING
-Program Size: data=19.0 xdata=0 code=918
+    SEGMENT: ?PR?CARSTOP?CARMOVEMENT
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY6000MS?CARTRACKING
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?CHANGESTATE?CARTRACKING
+Program Size: data=20.0 xdata=0 code=925
 creating hex file from ".\Objects\main"...
-".\Objects\main" - 0 Error(s), 1 Warning(s).
+".\Objects\main" - 0 Error(s), 3 Warning(s).
 Build Time Elapsed:  00:00:01
 </pre>
 </body>
