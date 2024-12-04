@@ -1,4 +1,4 @@
-C51 COMPILER V9.54   MAIN                                                                  12/02/2024 21:02:08 PAGE 1   
+C51 COMPILER V9.54   MAIN                                                                  12/04/2024 14:40:41 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
@@ -13,25 +13,76 @@ line level    source
    3          #include "carMovement.h"
    4          #include "carTracking.h"
    5          
-   6          void main()
-   7          {
-   8   1              Timer0_Init();
-   9   1              Timer1_Init();
-  10   1              while(1)
-  11   1              {
-  12   2                      CrossroadDetection();
-  13   2                      Tracking();
-  14   2                      // carStop();
-  15   2              }
-  16   1      }
+   6          sbit LED = P1^0;
+   7          unsigned char canDash = 1;
+   8          
+   9          void Delay500ms(void)   //@11.0592MHz
+  10          {
+  11   1              unsigned char data i, j, k;
+  12   1      
+  13   1              _nop_();
+  14   1              _nop_();
+  15   1              i = 22;
+  16   1              j = 3;
+  17   1              k = 227;
+  18   1              do
+  19   1              {
+  20   2                      do
+  21   2                      {
+  22   3                              while (--k);
+  23   3                      } while (--j);
+  24   2              } while (--i);
+  25   1      }
+  26          
+  27          void Delay700us(void)   //@11.0592MHz
+  28          {
+  29   1              unsigned char data i, j;
+  30   1      
+  31   1              _nop_();
+  32   1              i = 8;
+  33   1              j = 132;
+  34   1              do
+  35   1              {
+  36   2                      while (--j);
+  37   2              } while (--i);
+  38   1      }
+  39          
+  40          void main()
+  41          {
+  42   1              Delay500ms();
+  43   1              Timer0_Init();
+  44   1              Timer1_Init();
+  45   1              while(1)
+  46   1              {
+  47   2                      CrossroadDetection();
+  48   2                      if (Crossroads == 3 && canDash == 1)
+  49   2                      {
+  50   3                              canDash = 0;
+  51   3                              carMoveForward(3);
+  52   3                              Delay700us();
+  53   3                      }
+  54   2                      else if (Crossroads >= 6)
+C51 COMPILER V9.54   MAIN                                                                  12/04/2024 14:40:41 PAGE 2   
+
+  55   2                      {
+  56   3                              carStop();
+  57   3                              LED = 1; //light up the LED!!!
+  58   3                      }
+  59   2                      else
+  60   2                      {
+  61   3                              Tracking();
+  62   3                              LED = 0;
+  63   3                      }
+  64   2              }
+  65   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     14    ----
+   CODE SIZE        =     82    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =   ----    ----
+   DATA SIZE        =      1    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
