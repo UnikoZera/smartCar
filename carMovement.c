@@ -16,6 +16,7 @@ unsigned char dutyCycle2 = 32; //Right
 unsigned char States = 0;
 unsigned char specialStates = 0;
 unsigned char Fliping = 0; //1 means enable, 0 means disable
+unsigned long int Period = 0;
 
 void Timer0_Init(void)
 {
@@ -43,6 +44,7 @@ void Timer0_ISR(void) interrupt 1
     TL0 = 0x00;
 
     pwmCounter1++;
+    Period++;
     if (pwmCounter1 >= PWM_PERIOD)
     {
         pwmCounter1 = 0;
@@ -118,13 +120,13 @@ void carMoveForward(short int level)
     specialStates = 0;
     if (level == 1)
     {
-        dutyCycle1 = 16;
-        dutyCycle2 = 16;
+        dutyCycle1 = 20;
+        dutyCycle2 = 20;
     }
     else if (level == 2)
     {
-        dutyCycle1 = 56;
-        dutyCycle2 = 56;
+        dutyCycle1 = 52;
+        dutyCycle2 = 52;
     }
     else if (level == 3)
     {
@@ -141,18 +143,18 @@ void carTurnRight(short int level)
     {
         Fliping = 0;
         dutyCycle1 = 48;
-        dutyCycle2 = 16;
+        dutyCycle2 = 32;
     }
     else if (level == 2)
     {
         Fliping = 1;
-        dutyCycle1 = 48;
-        dutyCycle2 = 32;
+        dutyCycle1 = 38;
+        dutyCycle2 = 16;
     }
     else if (level == 3)
     {
         Fliping = 1;
-        dutyCycle1 = 48;
+        dutyCycle1 = 36;
         dutyCycle2 = 48;
     }
 }
@@ -164,20 +166,20 @@ void carTurnLeft(short int level)
     if (level == 1)
     {
         Fliping = 0;
-        dutyCycle1 = 16;
+        dutyCycle1 = 32;
         dutyCycle2 = 48;
     }
     else if (level == 2)
     {
         Fliping = 1;
-        dutyCycle1 = 32;
-        dutyCycle2 = 48;
+        dutyCycle1 = 16;
+        dutyCycle2 = 38;
     }
     else if (level == 3)
     {
         Fliping = 1;
         dutyCycle1 = 48;
-        dutyCycle2 = 48;
+        dutyCycle2 = 36;
     }
 }
 

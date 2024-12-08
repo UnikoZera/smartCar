@@ -11,4 +11,5 @@
     void Timer1_Init();
     extern char States;
     extern char specialStates;
+    extern unsigned long int Period;
 #endif
