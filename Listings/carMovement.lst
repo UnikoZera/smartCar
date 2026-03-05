@@ -1,38 +1,39 @@
-C51 COMPILER V9.54   CARMOVEMENT                                                           12/07/2024 19:20:36 PAGE 1   
+C51 COMPILER V9.60.7.0   CARMOVEMENT                                                       03/05/2026 14:20:41 PAGE 1   
 
 
-C51 COMPILER V9.54, COMPILATION OF MODULE CARMOVEMENT
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE CARMOVEMENT
 OBJECT MODULE PLACED IN .\Objects\carMovement.obj
-COMPILER INVOKED BY: D:\mcu\Keil5\C51\BIN\C51.EXE carMovement.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\List
-                    -ings\carMovement.lst) OBJECT(.\Objects\carMovement.obj)
+COMPILER INVOKED BY: D:\mcu\Keil5\Keil_v5\C51\BIN\C51.EXE carMovement.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRIN
+                    -T(.\Listings\carMovement.lst) TABS(2) OBJECT(.\Objects\carMovement.obj)
 
 line level    source
 
    1          #include <REGX52.H>
    2          #include <intrins.h>
    3          
-   4          sbit IN1F = P2^0;
-   5          sbit IN2F = P2^1;
-   6          sbit IN3F = P2^2;
-   7          sbit IN4F = P2^3;
-   8          sbit IN1B = P2^4;
-   9          sbit IN2B = P2^5;
-  10          sbit IN3B = P2^6;
-  11          sbit IN4B = P2^7;
+   4          sbit IN1F = P2 ^ 0;
+   5          sbit IN2F = P2 ^ 1;
+   6          sbit IN3F = P2 ^ 2;
+   7          sbit IN4F = P2 ^ 3;
+   8          sbit IN1B = P2 ^ 4;
+   9          sbit IN2B = P2 ^ 5;
+  10          sbit IN3B = P2 ^ 6;
+  11          sbit IN4B = P2 ^ 7;
   12          
   13          #define PWM_PERIOD 64
-  14          unsigned char dutyCycle1 = 32; //Left
-  15          unsigned char dutyCycle2 = 32; //Right
+  14          unsigned char dutyCycle1 = 32; // Left
+  15          unsigned char dutyCycle2 = 32; // Right
   16          unsigned char States = 0;
   17          unsigned char specialStates = 0;
-  18          unsigned char Fliping = 0; //1 means enable, 0 means disable
-  19          unsigned long int Period = 0;
+  18          unsigned char Fliping = 0; // 1 means enable, 0 means disable
+  19          unsigned long int Period = 0; // 其实这个period是用来记录小车在赛道上的时间的，在特�
+             -��时间窗口中检测到十字路口的时候就停止小车
   20          
   21          void Timer0_Init(void)
   22          {
   23   1          TMOD |= 0x01;
   24   1          TH0 = 0xFF;
-  25   1          TL0 = 0x00; 
+  25   1          TL0 = 0x00;
   26   1          ET0 = 1;
   27   1          EA = 1;
   28   1          TR0 = 1;
@@ -42,7 +43,7 @@ line level    source
   32          {
   33   1          TMOD |= 0x10;
   34   1          TH1 = 0xFF;
-  35   1          TL1 = 0x00; 
+  35   1          TL1 = 0x00;
   36   1          ET1 = 1;
   37   1          TR1 = 1;
   38   1      }
@@ -61,9 +62,9 @@ line level    source
   51   2          }
   52   1      
   53   1          if (pwmCounter1 < dutyCycle1 && (States != 3 && States != 4 && specialStates == 0))
-  54   1          {
-C51 COMPILER V9.54   CARMOVEMENT                                                           12/07/2024 19:20:36 PAGE 2   
+C51 COMPILER V9.60.7.0   CARMOVEMENT                                                       03/05/2026 14:20:41 PAGE 2   
 
+  54   1          {
   55   2              if (Fliping == 1 && States == 2)
   56   2              {
   57   3                  IN1F = 1;
@@ -125,9 +126,9 @@ line level    source
  113   2              IN4B = 0;
  114   2          }
  115   1      }
- 116          
-C51 COMPILER V9.54   CARMOVEMENT                                                           12/07/2024 19:20:36 PAGE 3   
+C51 COMPILER V9.60.7.0   CARMOVEMENT                                                       03/05/2026 14:20:41 PAGE 3   
 
+ 116          
  117          void carMoveForward(short int level)
  118          {
  119   1          States = 0;
@@ -152,7 +153,7 @@ line level    source
  138          void carTurnRight(short int level)
  139          {
  140   1          specialStates = 0;
- 141   1              States = 1;
+ 141   1          States = 1;
  142   1          if (level == 1)
  143   1          {
  144   2              Fliping = 0;
@@ -189,9 +190,9 @@ line level    source
  175   2              dutyCycle1 = 16;
  176   2              dutyCycle2 = 38;
  177   2          }
- 178   1          else if (level == 3)
-C51 COMPILER V9.54   CARMOVEMENT                                                           12/07/2024 19:20:36 PAGE 4   
+C51 COMPILER V9.60.7.0   CARMOVEMENT                                                       03/05/2026 14:20:41 PAGE 4   
 
+ 178   1          else if (level == 3)
  179   1          {
  180   2              Fliping = 1;
  181   2              dutyCycle1 = 48;
@@ -216,10 +217,10 @@ line level    source
  200          void carMoveBackward()
  201          {
  202   1          specialStates = 1;
- 203   1              IN1F = 1;
- 204   1              IN2F = 0;
- 205   1              IN3F = 0;
- 206   1              IN4F = 1;
+ 203   1          IN1F = 1;
+ 204   1          IN2F = 0;
+ 205   1          IN3F = 0;
+ 206   1          IN4F = 1;
  207   1      
  208   1          IN1B = 0;
  209   1          IN2B = 1;
@@ -230,10 +231,10 @@ line level    source
  214          void carSharpRight()
  215          {
  216   1          specialStates = 1;
- 217   1              IN1F = 0;
- 218   1              IN2F = 1;
- 219   1              IN3F = 0;
- 220   1              IN4F = 1;
+ 217   1          IN1F = 0;
+ 218   1          IN2F = 1;
+ 219   1          IN3F = 0;
+ 220   1          IN4F = 1;
  221   1      
  222   1          IN1B = 1;
  223   1          IN2B = 0;
@@ -244,18 +245,18 @@ line level    source
  228          void carSharpLeft()
  229          {
  230   1          specialStates = 1;
- 231   1              IN1F = 1;
- 232   1              IN2F = 0;
- 233   1              IN3F = 1;
- 234   1              IN4F = 0;
+ 231   1          IN1F = 1;
+ 232   1          IN2F = 0;
+ 233   1          IN3F = 1;
+ 234   1          IN4F = 0;
  235   1      
  236   1          IN1B = 0;
  237   1          IN2B = 1;
  238   1          IN3B = 1;
  239   1          IN4B = 0;
- 240   1      }
-C51 COMPILER V9.54   CARMOVEMENT                                                           12/07/2024 19:20:36 PAGE 5   
+C51 COMPILER V9.60.7.0   CARMOVEMENT                                                       03/05/2026 14:20:41 PAGE 5   
 
+ 240   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
